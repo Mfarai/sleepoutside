@@ -1,0 +1,1 @@
+// Dynamically produces the product detail pages
