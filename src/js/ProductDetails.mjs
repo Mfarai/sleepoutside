@@ -1,4 +1,5 @@
 
+  import {setLocalStorage}
   export default class ProductDetails {
     constructor(productId, dataSource){
         this.productId = productId;
@@ -17,7 +18,8 @@
         const section = document.createElement("section");
         const h3 = document.createElement("h3");
         const h2 = document.createElement("h2");
-        const mainImg = document.createElement("img");
+        const img = document.createElement("img");
+        const price = document.createElement("p");
         const color = document.createElement("p");
         const description = document.createElement("p");
         const div = document.createElement("div");
@@ -27,8 +29,9 @@
         h2.setAttribute("class", "divider");
         h2.innerHTML = this.product.NameWithoutBrand;
         img.setAttribute("class", "divider");
-        img.setAttribute("src", "FIND THE URL");
-
+        img.setAttribute("src", this.product.Image);
+        img.setAttribute("alt", this.product.NameWithoutBrand);
+        price.setAttribute("class", "product-card__price");
 
         section.appendChild(h3);
         section.appendChild(h2);
