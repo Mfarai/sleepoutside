@@ -8,6 +8,7 @@ function renderCartContents() {
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
+  <button onclick="removeFromCart(${item.Id})"><img src="/images/x_button.png" alt="X icon" width="30"> </button>
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -26,3 +27,13 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+
+
+function removeFromCart(Id){
+  // When the X is clicked you need to pull the id of the item to be removed, \
+  //then pull the contents of the cart from local storage, remove the appropriate item, 
+  //and restore the cart in localStorage. Then re-render the cart list.
+  console.log(cartItems);
+
+}
