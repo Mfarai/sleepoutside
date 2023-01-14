@@ -1,78 +1,52 @@
+import {setLocalStorage}from "./utils.mjs";
 
-  import {setLocalStorage}
-  export default class ProductDetails {
-    constructor(productId, dataSource){
-        this.productId = productId;
-        this.product = {};
-        this.dataSource = dataSource;
-      }
-      addProductToCart(product) {
-        cartItems.push(product);
-        setLocalStorage("so-cart", cartItems);
-      }
-      renderProductDetails() {
-        // Method to generate the HTML to display our product
+function productDetailsTemplate(product) {
+  return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
+    <h2 class="divider">${product.NameWithoutBrand}</h2>
+    <img
+      class="divider"
+      src="${product.Image}"
+      alt="${product.NameWithoutBrand}"
+    />
+    <p class="product-card__price">$${product.FinalPrice}</p>
+    <p class="product__color">${product.Colors[0].ColorName}</p>
+    <p class="product__description">
+    ${product.DescriptionHtmlSimple}
+    </p>
+    <div class="product-detail__add">
+      <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+    </div></section>`;
+}
 
-        // IN PROGRESS CURRENTLY ON THE IMG
-        const main = document.getElementById("main");
-        const section = document.createElement("section");
-        const h3 = document.createElement("h3");
-        const h2 = document.createElement("h2");
-        const img = document.createElement("img");
-        const price = document.createElement("p");
-        const color = document.createElement("p");
-        const description = document.createElement("p");
-        const div = document.createElement("div");
-        const button = document.createElement("button");
-        section.setAttribute("class", "product-detail");
-        h3.innerHTML = this.product.Brand.Name;
-        h2.setAttribute("class", "divider");
-        h2.innerHTML = this.product.NameWithoutBrand;
-        img.setAttribute("class", "divider");
-        img.setAttribute("src", this.product.Image);
-        img.setAttribute("alt", this.product.NameWithoutBrand);
-        price.setAttribute("class", "product-card__price");
 
-        section.appendChild(h3);
-        section.appendChild(h2);
-        section.appendChild(mainImg);
-        section.appendChild(price);
-        section.appendChild(color);
-        section.appendChild(description);
-        section.appendChild(div);
-        div.appendChild(button);
-        main.appendChild(section);
-
-        <section class="product-detail">
-        <h3>The North Face</h3>
-
-        <h2 class="divider">Alpine Guide Tent - 3-Person, 4-Season</h2>
-
-        <img
-          class="divider"
-          src="../images/tents/the-north-face-alpine-guide-tent-3-person-4-season-in-canary-yellow-high-rise-grey~p~985pr_01~320.jpg"
-          alt="Alpine Guide Tent - 3-Person, 4-Season"
-        />
-
-        <p class="product-card__price">$349.99</p>
-
-        <p class="product__color">Canary Yellow/High Rise Grey</p>
-
-        <p class="product__description">
-          Be ready for any outdoor adventure in low elevations and high-alpine
-          environments alike with the hybrid design of The North Face&#39;s
-          Alpine Guide four-season tent. It is made from durable, waterproof
-          Featherlite NSL pole system and an easy to pitch design.
-        </p>
-
-        <div class="product-detail__add">
-          <button id="addToCart" data-id="985PR">Add to Cart</button>
-        </div>
-      </section>
-      }
-     
+export default class ProductDetails {
+  constructor(productId, dataSource){
+      this.productId = productId;
+      this.product = {};
+      this.dataSource = dataSource;
+    }
+    async init() {
+      // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
+      this.product = await this.dataSource.findProductById(this.productId);
+      // once we have the product details we can render out the HTML
+      this.renderProductDetails("main");
+      // once the HTML is rendered we can add a listener to Add to Cart button
+      // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
+      document
+    .getElementById("addToCart")
+    .addEventListener("click", this.addToCart.bind(this));
+    }
+    addToCart() {
+      setLocalStorage("so-cart", this.product);
+    }
+    renderProductDetails(selector) {
+      const element = document.querySelector(selector);
+      element.insertAdjacentHTML(
+        "afterBegin",
+        productDetailsTemplate(this.product)
+      );
+    }
   }
-  
 
 
 

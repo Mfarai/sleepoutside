@@ -28,8 +28,8 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
-
-
+/*
+// KATIE'S IN PROGRESS
 function removeFromCart(Id){
   // When the X is clicked you need to pull the id of the item to be removed, \
   //then pull the contents of the cart from local storage, remove the appropriate item, 
@@ -37,3 +37,4 @@ function removeFromCart(Id){
   console.log(cartItems);
 
 }
+*/
