@@ -6,6 +6,7 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
+
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
@@ -20,9 +21,18 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-</li>`;
+  </li>`+
+  "<button id='delete' onclick= 'delElement("+(item++)+")'>delete</button>";
 
   return newItem;
 }
+function delElement(cartItems) {
+  let cart = getLocalStorage("so-cart");
+  cart.splice(cartItems, 1);
+  setLocalStorage("so-cart", cart)
+}
 
+  document.getElementById("delete")
+  document.addEventListener("click", delElement)
+  
 renderCartContents();
