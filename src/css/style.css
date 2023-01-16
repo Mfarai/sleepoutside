@@ -108,6 +108,12 @@ button {
 }
 .cart:hover svg {
   fill: gray;
+  -webkit-transition-property:  width;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: width;
+    -moz-transition-duration: 1s;
+    transition-property: width;
+    transition-duration: 1s;
 }
 
 /* End cart icon styles */
@@ -219,4 +225,19 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+
+
+
+/* Katie's CSS for Cart Icon Animation */
+.newItem {
+  width: 40px;
+  fill: rgb(146, 146, 255);
+  -webkit-transition-property:  width;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: width;
+    -moz-transition-duration: 1s;
+    transition-property: width;
+    transition-duration: 1s;
 }
