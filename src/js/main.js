@@ -3,8 +3,8 @@ import ProductList from "./ProductList.mjs";
 
 // Gets all products information with URL
 const dataSource = new ProductData("tents");
-console.log("DATASOURCE:");
-console.log(dataSource);
-const listing = new ProductListing("tents", dataSource, "<section>")
-console.log("Listing:");
-console.log(listing);
+// Finds the element location for the product cards
+const element = document.querySelector(".product-list");
+// Creates the listing
+const listing = new ProductList("Tents", dataSource, element);
+listing.init();

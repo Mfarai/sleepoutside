@@ -1,4 +1,3 @@
-
 // Import needed code from modules
 import { getParam } from "./utils.mjs";
 
@@ -33,4 +32,3 @@ document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 */
-
