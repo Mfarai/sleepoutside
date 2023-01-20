@@ -28,5 +28,11 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
-
-// COMMWENT
+// Returning a list according to a template function
+export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  if (clear == true) {
+    parentElement.innerHTML = "";
+  }
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+}
