@@ -1,8 +1,11 @@
 // Import needed code from modules
+import { loadHeaderFooter } from "./utils.mjs";
 import { getParam } from "./utils.mjs";
 
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
+// Creates the header and footer
+loadHeaderFooter();
 // Get the Id of our product
 const productId = getParam("product");
 // Gets all products information with URL
