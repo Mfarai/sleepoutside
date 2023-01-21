@@ -36,3 +36,27 @@ export function renderListWithTemplate (templateFn, parentElement, list, positio
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
+// Returning one template
+export function renderWithTemplate (templateFn, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", templateFn);
+  if (callback) {
+    callback(data);
+  }
+}
+export async function loadTemplate(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template;
+
+}
+// Loads and Renders header and footer
+export async function loadHeaderFooter() {
+  let headerTemplate = await loadTemplate("../partials/header.html");
+  let headerElement = document.getElementById("#main-header");
+  let footerTemplate = await loadTemplate("../partials/footer.html");
+  let footerElement = document.getElementById("#main-footer");
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+}
+
