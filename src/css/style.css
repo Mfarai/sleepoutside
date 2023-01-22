@@ -238,3 +238,16 @@ footer {
   transition-property: width;
   transition-duration: 1s;
 }
+
+.grid-categories {
+  display: grid;
+  gap: 50px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.category {
+  height: 50px;
+  color: black;
+  width: 25px;
+  background-color: lightcyan;
+}
