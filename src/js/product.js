@@ -11,7 +11,6 @@ const dataSource = new ProductData("tents");
 const product = new ProductDetails(productId, dataSource);
 product.init();
 
-
 // unsure where this code came from
 /*
 function addProductToCart(product) {
