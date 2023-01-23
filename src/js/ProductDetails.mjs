@@ -1,4 +1,4 @@
-import {setLocalStorage}from "./utils.mjs";
+import {setLocalStorage, getLocalStorage}from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -32,17 +32,20 @@ export default class ProductDetails {
       this.renderProductDetails("main");
       // once the HTML is rendered we can add a listener to Add to Cart button
       // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-      document
-    .getElementById("addToCart")
-    .addEventListener("click", function () {
-      this.addToCart.bind(this);
-      document.querySelector("svg.cartIcon").toggleClass('newItem');
-      setTimeout(document.querySelector("svg.cartIcon").toggleClass('newItem'), 1000)
-    }
-    )
-    }
+      addToCart.addEventListener('click', ()=> {
+        this.addToCart();
+      setTimeout(document.querySelector("svg.cartIcon").classList.toggle("newItem"), 1000);
+        });
+        }
     addToCart() {
-      setLocalStorage("so-cart", this.product);
+      let cartContents = getLocalStorage("so-cart");
+    //check to see if there was anything there
+    if (cartContents.length == 0) {
+      cartContents = [];
+    }
+    // then add the current product to the list
+    cartContents.push(this.product);
+    setLocalStorage("so-cart", cartContents);
     }
     renderProductDetails(selector) {
       const element = document.querySelector(selector);
