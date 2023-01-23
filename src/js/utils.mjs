@@ -34,6 +34,9 @@ export function renderListWithTemplate (templateFn, parentElement, list, positio
     parentElement.innerHTML = "";
   }
   const htmlStrings = list.map(templateFn);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
 // Returning one template
@@ -58,5 +61,14 @@ export async function loadHeaderFooter() {
   let footerElement = document.getElementById("#main-footer");
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+}
+
+// set a listener for both touchend and click
+export function setClick(selector, callback) {
+  qs(selector).addEventListener("touchend", (event) => {
+    event.preventDefault();
+    callback();
+  });
+  qs(selector).addEventListener("click", callback);
 }
 
