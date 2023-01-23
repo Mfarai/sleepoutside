@@ -39,7 +39,14 @@ export default class ProductDetails {
         });
         }
     addToCart() {
-      setLocalStorage("so-cart", this.product);
+      let cartContents = getLocalStorage("so-cart");
+    //check to see if there was anything there
+    if (!cartContents) {
+      cartContents = [];
+    }
+    // then add the current product to the list
+    cartContents.push(this.product);
+    setLocalStorage("so-cart", cartContents);
     }
     renderProductDetails(selector) {
       const element = document.querySelector(selector);
