@@ -38,9 +38,10 @@ export default class ProductDetails {
         });
         }
     addToCart() {
-      let cartContents = getLocalStorage("so-cart");
+      var cartContents = getLocalStorage("so-cart");
     //check to see if there was anything there
-    if (cartContents.length == 0) {
+    console.log(cartContents);
+    if (cartContents == null) {
       cartContents = [];
     }
     // then add the current product to the list
