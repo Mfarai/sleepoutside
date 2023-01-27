@@ -18,11 +18,12 @@ function renderCartContents() {
       totalPrice += cartItems[i].FinalPrice;
     }
     var shippingEst = 2.5;
-    var taxPercent = .06;
+    var taxPercent = 0.06;
     var taxAmount = totalPrice * taxPercent;
     var orderTotal = shippingEst + taxAmount + totalPrice;
 
-    document.querySelector(".cart-total").innerHTML = `
+    document.querySelector(".cart-total").innerHTML =
+      `
     <section class="checkoutForm">
     <form>
     <h3> Customer Name </h3>
@@ -55,13 +56,20 @@ function renderCartContents() {
     </form>
   </section> 
   <section class="orderSummary">
-  <p>Subtotal: `+ Math.round((totalPrice + Number.EPSILON) * 100) / 100 + `</p>
-  <p>Shipping Estimate: `+  Math.round((shippingEst + Number.EPSILON) * 100) / 100 + `</p>
-  <p>Tax: `+ Math.round((taxAmount + Number.EPSILON) * 100) / 100 + `</p>
-  <p>Order Total: `+ Math.round((orderTotal + Number.EPSILON) * 100) / 100  + `</p>
+  <p>Subtotal: ` +
+      Math.round((totalPrice + Number.EPSILON) * 100) / 100 +
+      `</p>
+  <p>Shipping Estimate: ` +
+      Math.round((shippingEst + Number.EPSILON) * 100) / 100 +
+      `</p>
+  <p>Tax: ` +
+      Math.round((taxAmount + Number.EPSILON) * 100) / 100 +
+      `</p>
+  <p>Order Total: ` +
+      Math.round((orderTotal + Number.EPSILON) * 100) / 100 +
+      `</p>
   <button class="checkOutButton" type="button">Check Out</button>
   </section>`;
- 
   }
 }
 
