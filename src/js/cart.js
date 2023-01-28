@@ -47,11 +47,11 @@ function renderCartContents() {
     <h3> Payment </h3>
     <div>
       <label for="ccNum">Credit Card Number:</label><br>
-      <input type="text" id="ccNum" name="ccNum" required><br>
+      <input type="text" pattern="[0-9]{16}" id="ccNum" name="ccNum" required><br>
       <label for="exDate">Expiration Date:</label><br>
-      <input type="text" id="exDate" name="exDate" required><br>
+      <input type="month" id="exDate" name="exDate" required><br>
       <label for="secCode">Security Code:</label><br>
-      <input type="text" id="secCode" name="secCode"><br>
+      <input type="text" pattern="[0-9]{3}" id="secCode" name="secCode"><br>
     </div>
     </form>
   </section> 
