@@ -42,7 +42,7 @@ function renderCartContents() {
       <label for="state">State:</label><br>
       <input type="text" id="state" name="state" required><br>
       <label for="zipCode">Zip Code</label><br>
-      <input type="text" id="zipCode" name="zipCode" required>
+      <input type="text" pattern="[0-9]{5}" id="zipCode" name="zipCode" required>
     </div>
     <h3> Payment </h3>
     <div>
