@@ -40,7 +40,6 @@ export default class ProductDetails {
     addToCart() {
       var cartContents = getLocalStorage("so-cart");
     //check to see if there was anything there
-    console.log(cartContents);
     if (cartContents == null) {
       cartContents = [];
     }
