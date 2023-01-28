@@ -5,7 +5,7 @@ import ProductList from "./ProductList.mjs";
 loadHeaderFooter();
 const category = getParam("category");
 // Gets all products information with URL
-const dataSource = new ProductData(category);
+const dataSource = new ProductData();
 // Finds the element location for the product cards
 const element = document.querySelector(".product-list");
 // Creates the listing
