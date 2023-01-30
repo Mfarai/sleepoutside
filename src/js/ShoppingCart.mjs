@@ -2,10 +2,11 @@ import { getLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
+  <button onclick="removeFromCart(${item.Id})"><img src="/images/x_button.png" alt="X icon" width="30"> </button>
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
-      alt="${item.Images.PrimaryMedium}"
+      src="${item.Images}"
+      alt="${item.Name}"
     />
   </a>
   <a href="#">
@@ -14,8 +15,11 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-</li>`;
-
+  </li>`;
+  /* +
+    "<button id='delete' onclick= 'delElement(" + item++ +
+    ")'>delete</button>";
+  */
   return newItem;
 }
 
@@ -23,11 +27,22 @@ export default class ShoppingCart {
   constructor(key, parentSelector) {
     this.key = key;
     this.parentSelector = parentSelector;
+    this.total = 0;
+  }
+  async init() {
+    const list = getLocalStorage(this.key);
+    this.calculateListTotal(list);
+    this.renderCartContents(list);
+  }
+  calculateListTotal(list) {
+    const amounts = list.map((item) => item.FinalPrice);
+    this.total = amounts.reduce((sum, item) => sum + item);
   }
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+    document.querySelector(".list-total").innerText += ` $${this.total}`;
   }
 }
 
@@ -36,7 +51,7 @@ export default class ShoppingCart {
 // STUFF FROM CART.JS
 
 
-
+/*
 
 
 
@@ -135,6 +150,7 @@ function cartItemTemplate(item) {
     "<button id='delete' onclick= 'delElement(" + item++ +
     ")'>delete</button>";
   */
+ /*
   return newItem;
 }
 function delElement(cartItems) {
@@ -147,3 +163,5 @@ document.getElementById("delete");
 document.addEventListener("click", delElement);
 
 renderCartContents();
+
+*/

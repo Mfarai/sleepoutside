@@ -18,6 +18,11 @@ export default class ExternalServices {
     const data = await convertToJson(response);
     return data.Result;
   }
+   async findProductById(id) {
+    const response = await fetch(baseURL + `product/${id}`);
+    const data = await convertToJson(response);
+    return data.Result;
+  }
   async checkout(payload) {
     const options = {
       method: "POST",
