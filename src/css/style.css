@@ -250,4 +250,5 @@ footer {
   color: black;
   width: 25px;
   background-color: lightcyan;
+  list-style: none;
 }
