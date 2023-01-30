@@ -1,12 +1,12 @@
 // Import needed code from modules
 import { getParam, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 loadHeaderFooter();
 // Get the Id of our product
 const productId = getParam("product");
 // Gets all products information with URL
-const dataSource = new ProductData("tents");
+const dataSource = new ExternalServices("tents");
 // Gets the specific product information
 const product = new ProductDetails(productId, dataSource);
 product.init();
