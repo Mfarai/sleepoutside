@@ -9,5 +9,8 @@ if (localStorage.getItem("newVisitor") == null) {
     alert("AGH");
   document.querySelector(".welcome-message").classList.remove("hide");
   localStorage.setItem("newVisitor", "done");
-  localStorage.clear();
+  
+
 }
+
+

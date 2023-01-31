@@ -1,11 +1,13 @@
-import { getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
-  <button onclick="removeFromCart(${item.Id})"><img src="/images/x_button.png" alt="X icon" width="30"> </button>
+  <button onclick="removeFromCart(${item.Id})"><img class="delete" src="/images/x-image.png" alt="X icon" width="30"> 
+  
+  </button>
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Images}"
+      src="${item.Images.PrimaryLarge}"
       alt="${item.Name}"
     />
   </a>
@@ -16,10 +18,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
-  /* +
-    "<button id='delete' onclick= 'delElement(" + item++ +
-    ")'>delete</button>";
-  */
+  
   return newItem;
 }
 
@@ -33,6 +32,7 @@ export default class ShoppingCart {
     const list = getLocalStorage(this.key);
     this.calculateListTotal(list);
     this.renderCartContents(list);
+    
   }
   calculateListTotal(list) {
     const amounts = list.map((item) => item.FinalPrice);
@@ -42,12 +42,23 @@ export default class ShoppingCart {
     const cartItems = getLocalStorage(this.key);
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-    document.querySelector(".list-total").innerText += ` $${this.total}`;
+    document.querySelector(".list-total").innerText += ` $${ Math.round((this.total + Number.EPSILON) * 100) / 100}`;
+    
   }
+  removeFromCart(id){
+    const cartItems = getLocalStorage(this.key);
+    removeItem(cartItems.Id);
+
+  }
+  
+
 }
 
 
-
+/* +
+    "<button id='delete' onclick= 'delElement(" + item++ +
+    ")'>delete</button>";
+  */
 // STUFF FROM CART.JS
 
 
