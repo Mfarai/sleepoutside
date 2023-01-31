@@ -252,3 +252,9 @@ footer {
   background-color: lightcyan;
   list-style: none;
 }
+.welcome-message {
+  display: block;
+}
+.welcome-message.hide {
+  display: none;
+}
